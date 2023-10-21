@@ -18,6 +18,13 @@ Georepublic Japan
 
 https://github.com/smellman/jica_2023
 
+- This presentation is written in Markdown
+  - You can edit this presentation with any text editor
+  - You can convert this presentation to PDF or PowerPoint
+  - You can download the presentation from the link below
+    - https://smellman.github.io/jica_2023/jica-seminar-2023.pdf
+    - https://smellman.github.io/jica_2023/jica-seminar-2023.pptx
+    - https://smellman.github.io/jica_2023/
 ---
 
 # Self introduction
