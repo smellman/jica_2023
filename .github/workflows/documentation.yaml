@@ -31,6 +31,7 @@ jobs:
       
       - run: mkdir -p public
       - run: touch public/.nojekyll
+      - run: cp -fr images public/images
       - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/index.html
       - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pptx
       - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pdf
