@@ -70,3 +70,82 @@ https://github.com/smellman/jica_2023
 
 ![bg right 80%](https://a.tile.openstreetmap.org/0/0/0.png)
 https://a.tile.openstreetmap.org/0/0/0.png
+
+---
+
+# Useful to web
+
+- Structure of tile is useful for web.
+  - Enable to scroll map smoothly.
+  - Enable to zoom up and zoom down map smoothly.
+  - HTTP GET request.
+- Tile become known for Google Maps.
+  - Tile has existed from the late 1990s.
+
+---
+
+# Zoom
+
+- Zoom level 0 : 1 file
+- Zoom level 1 : 2 x 2 = 4 files
+- Zoom level 2 : 4 x 4 = 16 files
+- ...
+- Zoom level 18 : 2^18 x 2^18 = 262,144 x 262,144 = 68,719,476,736 files
+
+![bg right 90%](https://maps.gsi.go.jp/help/image/tileNum.png)
+https://maps.gsi.go.jp/help/image/tileNum.png
+
+---
+
+# GET Request
+
+- Many services use REST API(GET Request).
+  - https://.../Z/X/Y.Format
+  - Z: Zoom Level
+  - X: X coordinate
+  - Y: Y coordinate
+  - Format: 
+    - Raster image format(png, jpg, webp)
+    - Vector data format(pbf, mvt)
+
+---
+
+# GET Request example
+
+- https://a.tile.openstreetmap.org/3/2/4.png
+  - Zoom = 3, X = 2, Y = 4, format = png
+  - X and Y coordinates start with 0.
+
+![bg right 90%](./images/1_get_request_example.png)
+
+---
+
+# Specification
+
+- Two tile service specifications are popular.
+  - Tile Map Service(TMS)
+  - Web Map Tile Service(WMTS)
+- TMS is simpler than WMTS.
+- TMS's X Y coordinate is started from bottom left.
+  - Same as Cartesian coordinate system.
+- WMTS's X Y coordinate is started from top left.
+  - Same as Coordinate system of 2D computer graphics.
+
+---
+
+![bg 90%](./images/2_tms_wmts.png)
+
+---
+
+# The Y coordinate flipped
+
+- OpenStreetMap use TMS like protocol but Y coordinate is numbered from top.
+  - OpenStreetMap call "Slippy Map".
+  - We call xyz tile.
+    - {z}/{x}/{y}.png
+    - Also we call zxy tile.
+
+![bg right 90%](https://maps.gsi.go.jp/help/image/tileNum.png)
+https://maps.gsi.go.jp/help/image/tileNum.png
+
+---
