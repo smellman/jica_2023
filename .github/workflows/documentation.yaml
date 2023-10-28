@@ -33,8 +33,8 @@ jobs:
       - run: touch public/.nojekyll
       - run: cp -fr images public/images
       - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/index.html
-      - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pptx
-      - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pdf
+      - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pptx --allow-local-files
+      - run: npx -y @marp-team/marp-cli@latest jica-seminar-2023.md -o public/jica-seminar-2023.pdf --allow-local-files
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

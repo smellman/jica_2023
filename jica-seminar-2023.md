@@ -2,6 +2,7 @@
 marp: true
 theme: default
 footer: 'JICA Seminar 2023'
+paginate: true
 ---
 
 # Create / distrubute tiled map
