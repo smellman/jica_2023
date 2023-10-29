@@ -150,3 +150,189 @@ https://maps.gsi.go.jp/help/image/tileNum.png
 https://maps.gsi.go.jp/help/image/tileNum.png
 
 ---
+
+# XYZ tile
+
+- De facto standard of tiled map.
+  - Web Mercator projection
+  - Y coordinate flipped TMS
+  - Provide REST API
+    - {z}/{x}/{y}.{format}
+  - Anyone provide "Specification"
+- Too many libraries support XYZ tile.
+  - Leaflet, OpenLayers, Maplibre GL JS, Google Maps API etc.
+
+---
+
+# Raster tile (1/3)
+
+- Provides "rendered image"
+  - The image doesn't have any "data".
+  - Focus to visualization.
+
+![bg right 90%](./images/3_openstreetmap.png)
+
+---
+
+# Raster tile (2/3)
+
+- Provides "Satellite images" or "Aerial photograph"
+  - Focus to photography.
+  - The image doesn't have any "data" too.
+
+![bg right 90%](./images/4_gsi_map_1.png)
+
+---
+
+# Raster tile (3/3)
+
+- Provides "data" as image.
+  - Focus to data.
+    - Population, Temperature, Rainfall, etc.
+  - The image has "data" as color.
+    - Sample raster tiles contain the elevation value obtainable by calculating with RGB values.
+
+![bg right 90%](./images/5_gsi_map_2.png)
+
+---
+
+# Vector tile (1/2)
+
+- Provides "Vector data"
+  - Each tile contains "Vector data".
+    - The tile like a data container.
+
+![bg right 90%](./images/6_vector_tile_example.png)
+
+---
+
+# Vector tile (2/2)
+
+- Vector tile doesn't have a style.
+  - The client renders images with style settings.
+    - Easy to rotation and bearing.
+    - Supports 3D rendering.
+- Programmable.
+  - The client can change the style dynamically.
+
+---
+
+# Vector tile example - Multilingual
+
+- https://openmaptiles.org/languages/
+  - Enable to change main language dynamically.
+
+![bg right 90%](./images/7_multilingual.png)
+
+---
+
+# Vector tile example - Geospatial Information Authority of Japan
+
+- https://maps.gsi.go.jp/vector/
+  - GSI provides vector tile.
+  - Enable to change style dynamically.
+
+![bg right 90%](./images/8_gsi_map_vector.png)
+
+---
+
+# Mapbox Vector Tile
+
+- De facto standard of vector tile.
+  - Vector tile specification by Mapbox Inc.
+- Specification
+  - A tile encoded by Protocol Buffer format.
+  - Desinged for Web Mercator projection.
+  - Supports Layers and Features.
+
+https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/
+
+---
+
+# Mapbox GL ecosystem and Style Specification
+
+- Mapbox provides Mapbox GL JS(Web), Mapbox GL Native(Smartphone and Desktop application).
+  - Mapbox provides specification of styling.
+https://docs.mapbox.com/mapbox-gl-js/style-spec/
+
+![bg right 90%](./images/9_mapbox_gl_ecosystem.png)
+
+---
+
+# Note: Mapbox GL is proprietary software
+
+- Mapbox GL became proprietary software from end of 2020.
+  - Mapbox GL JS is OpenSource software until v1.5.
+  - Mapbox GL JS over v2 must require mapbox service’s token.
+- MapLibre GL ecosystems are fork of mapbox OpenSource versions.
+  - https://maplibre.org/
+  - Highly recommend to use MapLibre GL JS now.
+
+---
+
+# Tile support libraries - Javascript
+
+- Leaflet
+  - https://leafletjs.com/
+  - Lightweight and easy to use.
+  - Supports Mapbox Vector Tile with plugin.
+- OpenLayers
+  - https://openlayers.org/
+  - Difficult to use but powerful.
+  - Supports Mapbox Vector Tile.
+- MapLibre GL JS
+  - https://maplibre.org/
+  - Easy to use for Mapbox Vector Tile.
+  - Supports raster xyz tile too.
+
+---
+
+# Tile support libraries - Android
+
+- MapLibre GL Native
+  - https://maplibre.org/
+  - Easy to use for Mapbox Vector Tile.
+  - Supports raster xyz tile too.
+- Google Maps SDK
+  - https://developers.google.com/maps/documentation/android-sdk/overview
+  - Easy to use for raster xyz tile.
+
+---
+
+# Tile support libraries - iOS
+
+- MapLibre GL Native
+  - https://maplibre.org/
+  - Easy to use for Mapbox Vector Tile.
+  - Supports raster xyz tile too.
+- Mapkit
+  - https://developer.apple.com/documentation/mapkit
+  - Easy to use for raster xyz tile.
+
+---
+
+# Desktop application
+
+- QGIS
+  - https://qgis.org/
+  - Supports raster xyz tile.
+  - Supports Mapbox Vector Tile.
+
+---
+
+# Introduction of software and data in this presentation
+
+---
+
+# Requirements
+
+- This presentation requires Linux based OS.
+- Also, you can use Raspberry Pi 4.
+  - Raspberry Pi 4 is cheap and powerful.
+  - Raspberry Pi 4 is ARM64 architecture.
+  - Raspberry Pi 4 is easy to use for GIS.
+
+---
+
+# Software
+
