@@ -188,7 +188,7 @@ https://maps.gsi.go.jp/help/image/tileNum.png
 
 - Provides "data" as image.
   - Focus to data.
-    - Population, Temperature, Rainfall, etc.
+    - Population, Temperature, Rainfall, Elevation, etc.
   - The image has "data" as color.
     - Sample raster tiles contain the elevation value obtainable by calculating with RGB values.
 
@@ -336,3 +336,8 @@ https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
 # Software
 
+- GDAL/OGR
+  - https://gdal.org/
+  - GDAL/OGR is the most popular GIS library.
+  - GDAL/OGR supports many GIS data formats.
+  - GDAL/OGR supports raster xyz tile.
