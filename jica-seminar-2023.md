@@ -30,6 +30,7 @@ https://github.com/smellman/jica_2023
     - [PDF](https://smellman.github.io/jica_2023/jica-seminar-2023.pdf)
     - [PowerPoint](https://smellman.github.io/jica_2023/jica-seminar-2023.pptx)
     - [HTML](https://smellman.github.io/jica_2023/)
+
 ---
 
 # Self introduction
@@ -334,10 +335,58 @@ https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
 ---
 
-# Software
+# Software - GDAL/OGR
 
-- GDAL/OGR
-  - https://gdal.org/
-  - GDAL/OGR is the most popular GIS library.
-  - GDAL/OGR supports many GIS data formats.
-  - GDAL/OGR supports raster xyz tile.
+- https://gdal.org/
+- GDAL/OGR is the most popular GIS library.
+- GDAL/OGR supports many GIS data formats.
+- GDAL/OGR supports raster xyz tile.
+
+---
+
+# Software - Tippecanoe
+
+- 
+
+---
+
+# Software - Charites
+
+---
+
+# Software - editor
+
+- 
+
+---
+
+# Software - make
+
+---
+
+# Setup softwares
+
+```bash
+$ sudo apt install make
+$ sudo apt install git
+$ git clone https://github.com/smellman/jica_2023.git
+$ cd jica_2023/scripts/system
+$ sudo make install
+```
+
+---
+
+# How to create your own tiled map
+
+---
+
+---
+
+# How to design your own tiled map
+
+---
+
+# How to distribute your own tiled map
+
+---
+
