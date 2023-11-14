@@ -35,3 +35,10 @@ yarn:
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 	apt update
 	apt install -y yarn
+
+kubo:
+	@echo install kubo
+	wget https://github.com/ipfs/kubo/releases/download/v0.24.0/kubo_v0.24.0_linux-amd64.tar.gz
+	tar zxf kubo_v0.24.0_linux-amd64.tar.gz
+	sh kubo/install.sh
+	rm -fr kubo*
