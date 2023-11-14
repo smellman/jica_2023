@@ -1,0 +1,10 @@
+{
+    "version": 8,
+    "name": "Global Map - Sri Lanka",
+    "metadata": {"maputnik:renderer": "mbgljs"},
+    "sources": {},
+    "sprite": "https://tile.openstreetmap.jp/styles/osm-bright/sprite",
+    "glyphs": "https://tile.openstreetmap.jp/fonts/{fontstack}/{range}.pbf",
+    "layers": [],
+    "id": "06qove9mi"
+}
