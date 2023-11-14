@@ -1,6 +1,6 @@
 all: install
 
-install: upgrade gdal vim tippecanoe nodejs yarn kubo docker
+install: upgrade gdal vim tippecanoe nodejs yarn kubo docker pmtiles
 
 upgrade:
 	@echo upgrade
@@ -56,4 +56,11 @@ docker:
 	chown -R $(USER):$(USER) $(HOME)/.docker
 	usermod -aG docker $(USER)
 	rm -fr OME
+
+pmtiles:
+	@echo install pmtiles
+	wget https://github.com/protomaps/go-pmtiles/releases/download/v1.11.1/go-pmtiles_1.11.1_Linux_arm64.tar.gz
+	tar zxf go-pmtiles_1.11.1_Linux_arm64.tar.gz
+	mv pmtiles /usr/local/bin/
+	rm LICENSE README.md go-pmtiles*
 
