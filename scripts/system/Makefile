@@ -15,6 +15,10 @@ vim:
 	@echo install vim
 	apt install -y vim
 
+p7zip:
+	@echo install p7zip-full
+	apt install -y p7zip-full
+
 tippecanoe:
 	@echo install tippecanoe dependencies
 	apt install -y build-essential libsqlite3-dev zlib1g-dev
