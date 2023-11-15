@@ -1,6 +1,6 @@
 all: install
 
-install: upgrade gdal vim tippecanoe nodejs yarn kubo docker pmtiles
+install: upgrade gdal vim p7zip tippecanoe nodejs yarn kubo docker pmtiles charites
 
 upgrade:
 	@echo upgrade
@@ -68,3 +68,6 @@ pmtiles:
 	mv pmtiles /usr/local/bin/
 	rm LICENSE README.md go-pmtiles*
 
+charites:
+	@echo install unvt/charites
+	npm install -g @unvt/charites

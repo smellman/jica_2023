@@ -18,7 +18,9 @@ See: https://smellman.github.io/jica_2023/
 ## System setup (Raspberry Pi 4)
 
 ```bash
-cd scripts/system
+sudo apt install git
+git clone https://github.com/smellman/jica_2023.git
+cd jica_2023/scripts/system
 sudo HOME=$HOME USER=$USER make
 ```
 
