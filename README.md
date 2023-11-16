@@ -6,7 +6,7 @@ macOS + Marp
 
 ```bash
 brew install node
-npx @marp-team/marp-cli@latest jica-seminar-2023.md -o index.html
+npx @marp-team/marp-cli@latest jica-seminar-2023.md -o jica-seminar-2023.html
 npx @marp-team/marp-cli@latest jica-seminar-2023.md -o jica-seminar-2023.pdf --allow-local-files
 npx @marp-team/marp-cli@latest jica-seminar-2023.md -o jica-seminar-2023.pptx --allow-local-files
 ```
