@@ -36,7 +36,9 @@ generate:
 	  -L roadl:gmlk20/roadl_lka.fgb
 
 tileserver-gl:
-	docker run --rm -it -v $(PWD):/data -p 8080:80 \
+	docker run --rm -it -v $(PWD):/data -p 8081:80 \
 	  maptiler/tileserver-gl-light \
 	  -p 80 --file /data/lka.mbtiles
 
+serve:
+	docker run -p 8081:80 -v $(PWD):/usr/share/nginx/html:ro nginx

@@ -1,0 +1,6 @@
+id: polbnda
+type: fill
+source: global_map
+source-layer: polbnda
+paint:
+  fill-color: rgb(255,66,233)
