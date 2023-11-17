@@ -7,8 +7,8 @@ paginate: true
 
 # Create / distrubute tiled map
 
-Taro Matsuzawa
-Georepublic Japan
+## Taro Matsuzawa
+### Georepublic Japan
 
 ---
 
@@ -17,7 +17,7 @@ Georepublic Japan
 - This presentation use some links to external resources
   - Please download the presentation from the link below
 
-https://github.com/smellman/jica_2023
+
 
 ---
 
@@ -50,11 +50,58 @@ https://github.com/smellman/jica_2023
 
 # Today's agenda
 
+- System setup
 - What is tiled map?
 - Introduction of software and data in this presentationå
 - How to create your own tiled map
 - How to design your own tiled map
 - How to distribute your own tiled map
+
+---
+
+# System setup
+
+- This presentation requires Linux based OS.
+  - Use Raspberry Pi 4.
+
+---
+
+# System setup - Connect to jump host
+
+- Connect to SSID "jica2023" # TODO change SSID
+- Launch Terminal
+  - Windows: Use PowerShell
+  - Mac: Use Terminal.app
+- Connect to Raspberry Pi with SSH
+
+```PowerShell
+ssh portal@j2213.local
+```
+
+---
+
+# System setup - Connect to Your Raspberry Pi
+
+```bash
+make <YOUR HOST NAME>
+```
+
+e.g.
+
+```bash
+make m321
+```
+
+---
+
+# System setup - Install software
+
+```bash
+sudo apt install -y git make
+git clone https://github.com/smellman/jica_scripts.git
+cd jica_scripts/system
+sudo HOME=$HOME USER=$USER make install
+```
 
 ---
 
@@ -339,6 +386,7 @@ https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
 - https://gdal.org/
 - GDAL/OGR is the most popular GIS library.
+  - QGIS based on GDAL/OGR.
 - GDAL/OGR supports many GIS data formats.
 - GDAL/OGR supports raster xyz tile.
 
@@ -361,18 +409,6 @@ https://docs.mapbox.com/mapbox-gl-js/style-spec/
 ---
 
 # Software - make
-
----
-
-# Setup softwares
-
-```bash
-$ sudo apt install make
-$ sudo apt install git
-$ git clone https://github.com/smellman/jica_2023.git
-$ cd jica_2023/scripts/system
-$ sudo make install
-```
 
 ---
 
