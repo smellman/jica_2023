@@ -1,0 +1,10 @@
+id: airp
+type: symbol
+source: global_map
+source-layer: airp
+layout:
+  icon-image: airport_11
+  text-field: '{nam}'
+  text-offset:
+    - 0
+    - 0.6

@@ -1,0 +1,18 @@
+id: roadl-secondary
+type: line
+source: global_map
+source-layer: roadl
+filter:
+  - all
+  - - '=='
+    - rtt
+    - '15'
+paint:
+  line-color: rgb(255,255,255)
+  line-width:
+    base: 1
+    stops:
+      - - 8
+        - 1
+      - - 12
+        - 4
