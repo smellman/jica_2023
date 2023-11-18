@@ -5,7 +5,7 @@ footer: 'JICA Seminar 2023'
 paginate: true
 ---
 
-# Create / distrubute tiled map
+# Create / distribute tiled map
 
 ## Taro Matsuzawa
 ### Georepublic Japan
