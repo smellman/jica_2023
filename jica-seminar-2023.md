@@ -12,24 +12,13 @@ paginate: true
 
 ---
 
-# Notes (1/2)
+# Notes
 
-- This presentation use some links to external resources
-  - Please download the presentation from the link below
+- This presentation use some command line tools
+  - Open following link in your browser.
+  - Copy and paste the command line to your terminal.
 
-
-
----
-
-# Notes (2/2)
-
-- This presentation is written in Markdown
-  - You can edit this presentation with any text editor
-  - You can convert this presentation to PDF or PowerPoint, please see the README.md
-  - You can download the presentation of auto generate versions from the link below
-    - [PDF](https://smellman.github.io/jica_2023/jica-seminar-2023.pdf)
-    - [PowerPoint](https://smellman.github.io/jica_2023/jica-seminar-2023.pptx)
-    - [HTML](https://smellman.github.io/jica_2023/)
+https://smellman.github.io/jica_2023/
 
 ---
 
@@ -444,6 +433,7 @@ https://docs.mapbox.com/mapbox-gl-js/style-spec/
 # Software - tileserver-gl-light
 
 - tileserver-gl-light is a vector tile server.
+- useful for inspecting vector tile.
 
 ---
 
@@ -736,8 +726,18 @@ https://smellman.github.io/pmtiles-example/
 
 ---
 
-
 # How to design your own tiled map
+
+---
+
+# Design tiled map
+
+- Vector tile doesn't have a style.
+  - The client renders images with style settings.
+- In this presentation, we use `charites` to design tiled map.
+  - Charites convert Style Specification(JSON) to YAML.
+  - YAML is easy to read and write for human.
+  - YAML is easy to edit for beginners.
 
 ---
 
