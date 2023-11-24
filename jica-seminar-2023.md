@@ -649,7 +649,12 @@ convert:
 	ogr2ogr roadl_lka.geojson -s_srs EPSG:4326 -t_srs EPSG:4326 roadl_lka.shp
 ```
 
-ogr2ogr convert Shapefile to GeoJSON. Notes: Those Shapefiles are not included .prj file.
+---
+
+# 9 outputs
+
+- ogr2ogr convert Shapefile to GeoJSON.
+  - Notes: Those Shapefiles are not included .prj file.
 
 ---
 
@@ -741,11 +746,377 @@ https://smellman.github.io/pmtiles-example/
 
 ---
 
+# Try to edit style
+
+```bash
+cd ~/jica_scripts/vector_tile
+make practice
+```
+Open http://<your host>.local:8080/ in your browser.
+
+Open other terminal and run following command.
+
+```bash
+cd ~/jica_scripts/vector_tile
+nano style-practice.yml
+```
+
+---
+
+# nano
+
+- nano is a simple text editor.
+  - nano is easy to use for begineer.
+- Ctrl + O: Save file
+- Ctrl + X: Exit nano
+
+![bg right 50%](./images/17_nano.png)
+
+---
+
+# Remove comments on layers
+
+Remove comments in style-practice.yml.
+
+```yaml
+layers:
+  - !!inc/file layers/background.yml
+#  - !!inc/file layers/polbnda.yml
+#  - !!inc/file layers/riverl.yml
+#  - !!inc/file layers/inwatera.yml
+#  - !!inc/file layers/roadl-primary.yml
+#  - !!inc/file layers/roadl-secondary.yml
+#  - !!inc/file layers/raill-base.yml
+#  - !!inc/file layers/raill-dot.yml
+#  - !!inc/file layers/airp.yml
+```
+
+---
+
+# Layers in Maplibre Style Specification
+
+- Background
+- Fill
+- Line
+- Symbol
+- Circle
+- Raster
+- Hillshade
+- Fill Extrusion
+  - It used for 3D rendering.
+
+https://maplibre.org/maplibre-style-spec/
+
+---
+
+# Background layer
+
+```yaml
+id: background
+type: background
+paint: 
+  background-color: rgb(0,0,0)
+```
+
+![bg right 100%](./images/18_background_layer.png)
+
+---
+
+# Fill layer
+
+```yaml
+id: polbnda
+type: fill
+source: global_map
+source-layer: polbnda
+paint:
+  fill-color: '#f2efe9'
+```
+
+- source: global_map means "global_map" source in sources section.
+- source-layer: polbnda means "polbnda" layer in global_map source.
+
+![bg right 100%](./images/19_fill_layer.png)
+
+---
+
+# Line layer
+
+```yaml
+id: riverl
+type: line
+source: global_map
+source-layer: riverl
+paint:
+  line-color: rgb(0,0,255)
+  line-width:
+    base: 1
+    stops:
+      - - 6
+        - 0.5
+      - - 10
+        - 2
+```
+
+![bg right 100%](./images/20_line_layers.png)
+
+---
+
+# Line layer
+
+- Draw line with polyline features.
+  - Normal line.
+  - Dash-array line.
+    - Following example is Normal line + Dash-array line.
+  
+![](./images/21_dash-array.png)
+
+---
+
+# Symbol layer
+
+```yaml
+id: airp
+type: symbol
+source: global_map
+source-layer: airp
+layout:
+  icon-image: airport_11
+  text-field: '{nam}'
+  text-offset:
+    - 0
+    - 0.6
+```
+
+![bg right 80%](./images/22_symbol_layer.png)
+
+---
+
+# Symbol layer
+
+- Draw symbol with point features.
+  - Icon
+  - Text
+  - Text with icon
+- Allow Point, Polygon and Polyline features.
+
+![height:300px](./images/23_symbol_layers_example.png)
+
+---
+
+# Convert your style via charites
+
+Stop `make practice` command and run following command.
+
+```bash
+make build
+```
+
+`Makefile` is simple to run tasks.
+
+```Makefile
+build:
+  charites convert style-practice.yml style-practice.json
+```
+
+---
+
+# Result
+
+```bash
+make serve
+```
+
+Open http://<your host>.local:8080/ in your browser.
+
+![bg right 100%](./images/24_result.png)
+
+--- 
+
 # How to distribute your own tiled map
 
 ---
 
+# Raster tile hosting (1)
 
+- If you use small number of data only, hosting as static image is easy.
+  - Use nginx or Apache HTTP Server.
+  - Use AWS S3 or Google Cloud Storage.
+  - Github Pages is good for small data and free.
+    - Be careful to license of tile images.
+
+https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages
+
+---
+
+# Raster tile hosting (2)
+
+- If you use large number of data, be careful to hosting.
+  - File system limitation: max number of files.
+    - Ext4 on Linux: 4,294,967,295 files(specified at filesystem creation time)
+  - File copy will take a long time.
+  - MBTiles is a solution to hosting large number of data.
+    - MBUtil is useful to create .mbtiles from tile images.
+
+```bash
+mb-util temp/ el.mbtiles 
+```
+
+---
+
+# Vector tile hosting - tileserver-gl
+
+- Tileserver GL is useful.
+  - But vector tiles needs SSL access in internet.
+  - Let's encrypt is useful to get SSL certificate.
+    - https://letsencrypt.org/
+  - Setup frontend server(Apache/nginx/etc) and connect from server with reverse proxy.
+
+---
+
+# Overview - nginx
+
+![height:500px](./images/25_tileserver-gl.png)
+
+--- 
+
+# Reverse proxy setting
+
+- Nginx is easy to setup reverse proxy.
+
+```nginx
+location / {
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_pass http://localhost:8080;
+}
+```
+
+---
+
+# Server-side rendering
+
+- Tileserver GL can deliver raster tile if you host style.
+  - But rendering is slow.
+    - If you use this function, you should use cache server.
+
+![bg right 100%](./images/26_tileserver-gl.png)
+
+---
+
+# Tileserver GL - cache
+
+- Use varnish cache for raster rendering.
+  - https://varnish-cache.org/
+- https://tile.openstreetmap.jp/ use varnish cache.
+  - 20 processs run.
+  - 20Core CPU and 64GB RAM.
+
+![bg right 100%](./images/27_cache.png)
+
+---
+
+# Vector tile hosting - pmtiles
+
+- PMTiles is useful to hosting vector tile.
+  - PMTiles is "Cloud Native" format.
+  - PMTiles is easy to host as static file.
+    - Nginx / Apache / AWS S3 / Google Cloud Storage etc.
+
+https://github.com/protomaps/PMTiles
+
+---
+
+# PMTiles nginx setting - CORS setting
+
+```nginx
+add_header 'Access-Control-Allow-Origin' "$http_origin" always;
+add_header 'Access-Control-Allow-Credentials' 'true' always;
+add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,Range,User-Agent,X-Requested-With' always;
+
+if ($request_method = 'OPTIONS') {
+  # Tell client that this pre-flight info is valid for 20 days
+  add_header 'Access-Control-Allow-Origin' "$http_origin" always;
+  add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,Range,User-Agent,X-Requested-With' always;
+  add_header 'Access-Control-Max-Age' 1728000;
+  add_header 'Content-Type' 'text/plain charset=UTF-8';
+  add_header 'Content-Length' 0;
+  return 204;
+}
+```
+
+see: https://github.com/smellman/pmtiles-example
+
+---
+
+# Static hosting usecase - IPFS
+
+- IPFS is a peer-to-peer hypermedia protocol.
+  - https://ipfs.tech/
+- IPFS is useful to hosting static files.
+  - IPFS is useful to hosting PMTiles.
+
+---
+
+# IPFS - How to start daemon
+
+```bash
+cd ~/jica_scripts/system
+make ipfs-init
+make ipfs-daemon
+```
+
+---
+
+# IPFS - How to add file
+
+```bash
+cd ~/jica_scripts/vector_tile
+make ipfs
+```
+
+Output `CID` is IPFS Content Identifier.
+
+```
+added QmRSsj5FstJt8Rvrvp4GKG4i77yRredn8eHAuYoNkKhWpW lka.pmtiles
+```
+
+---
+
+# IPFS - How to access
+
+Copy CID, then.
+
+```bash
+nano style-ipfs.yml
+```
+
+Paste CID to `sources` section.
+
+```yaml
+sources:
+  global_map:
+    type: vector
+    url: >-
+      pmtiles://https://smb.optgeo.org/ipfs/<Your CID>
+```
+
+https://smb.optgeo.org/ipfs/ is IPFS gateway server running by Hidenori Fujimura.
+
+---
+
+# IPFS - How to access
+
+
+```bash
+cd ~/jica_scripts/vector_tile
+make build-ipfs
+make serve
+```
+
+Open http://<your host>.local:8080/index-ipfs.html in your browser.
 
 ---
 
@@ -753,3 +1124,4 @@ https://smellman.github.io/pmtiles-example/
 
 - This presentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - All pictures with OpenStreetMap images are licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+  - © OpenStreetMap contributors
