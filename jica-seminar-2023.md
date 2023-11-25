@@ -985,7 +985,7 @@ build:
 make serve
 ```
 
-Open http://<your host>.local:8080/ in your browser.
+Open http://<your host>.local:8000/ in your browser.
 
 ![bg right 100%](./images/24_result.png)
 
@@ -1174,7 +1174,7 @@ make build-ipfs
 make serve
 ```
 
-Open http://<your host>.local:8080/index-ipfs.html in your browser.
+Open http://<your host>.local:8000/index-ipfs.html in your browser.
 
 ---
 
