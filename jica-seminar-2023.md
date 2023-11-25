@@ -873,6 +873,35 @@ paint:
 
 ---
 
+# Filter
+
+roadl-primary.yml and roadl-secondary.yml use filter.
+
+roadl-primary.yml use following filter.
+
+```yaml
+filter:
+  - all
+  - - '=='
+    - rtt
+    - '14'
+```
+
+'rtt' is a field name in roadl layer and '14' is primary route.
+
+---
+
+# Zoom function
+
+- Zoom function is useful to change style dynamically.
+  - Set Zoom 6 to 1 and Zoom 10 to 6, the value will increase between Zoom 6 and 10.
+- "base" property will use to control the rate which the function output increases.
+  - "base = 1" will be increased linearly.
+
+https://maplibre.org/maplibre-style-spec/expressions/
+
+---
+
 # Symbol layer
 
 ```yaml
@@ -901,6 +930,35 @@ layout:
 - Allow Point, Polygon and Polyline features.
 
 ![height:300px](./images/23_symbol_layers_example.png)
+
+---
+
+# icon-image and text-field
+
+- icon-image is a property of symbol layer.
+  - icon-image is a name of icon.
+    - icon-image is defined in sprite.
+- text-field is a property of symbol layer.
+  - text-field is a name of field in source data.
+    - It can use Feature Properties using {field_name}.
+
+---
+
+# text-offset
+
+- text-offset is a property of symbol layer.
+  - text-offset is a offset of text.
+    - It can use array of [x, y].
+    - x and y are offset from center of point.
+
+```yaml
+layout:
+  icon-image: airport_11
+  text-field: '{nam}'
+  text-offset:
+    - 0
+    - 0.6
+```
 
 ---
 
